@@ -36,8 +36,8 @@ namespace CHarpLab5_2
             //graph.matching();
 
             update();
-            textDelay1.Text = graph.delay1.ToString();
-            textDelay2.Text = graph.delay2.ToString();
+            //textDelay1.Text = graph.delay1.ToString();
+            //textDelay2.Text = graph.delay2.ToString();
 
             focusController = new FocusController(graph);
         }
@@ -84,6 +84,8 @@ namespace CHarpLab5_2
             foreach (var v in graph.rightPart)
                 comboBoxEdgeRight.Items.Add(v.Key);
             comboBoxEdgeRight.SelectedIndex = 0;
+
+            updateDelay();
 
             //pictureGraph.Focus();
             this.Focus();
@@ -139,16 +141,23 @@ namespace CHarpLab5_2
                 return;
             }
 
+            if (name.Length > 6)
+            {
+                errorProvider.SetError(textAddVertex, "Поле не может быть таким большим");
+                return;
+            }
+
             try
             {
                 graph.addVertex(right, name);
+                update();
             }
             catch(GraphException e)
             {
                 errorProvider.SetError(textAddVertex, e.Message);
             }
 
-            update();
+            
         }
 
         private void delVertex(bool right, string name)
@@ -158,26 +167,28 @@ namespace CHarpLab5_2
             try
             {
                 graph.delVertex(right, name);
+                update();
             }
             catch (GraphException e)
             {
                 errorProvider.SetError(groupDeleteVertex, e.Message);
             }
-
-            update();
         }
         private void btnAddVertexLeft_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             addVertex(false);
         }
 
         private void btnAddVertexRight_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             addVertex(true);
         }
 
         private void btnDeleteVertexLeft_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             Object obj = comboBoxDeleteVertexLeft.SelectedItem;
             if(obj is null)
             {
@@ -195,6 +206,7 @@ namespace CHarpLab5_2
 
         private void btnDeleteVertexRight_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             Object obj = comboBoxDeleteVertexRight.SelectedItem;
             if (obj is null)
             {
@@ -217,6 +229,7 @@ namespace CHarpLab5_2
 
         private void btnAddEdge_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             Object obj = comboBoxEdgeLeft.SelectedItem;
             if (obj is null)
             {
@@ -248,17 +261,21 @@ namespace CHarpLab5_2
             try
             {
                 graph.addEdge(from, to);
+                update();
             }
             catch(GraphException exp)
             {
+                Console.WriteLine("error");
+                Console.WriteLine(exp.Message);
                 errorProvider.SetError(groupEdge, exp.Message);
             }
 
-            update();
+            
         }
 
         private void btnDelEdge_Click(object sender, EventArgs e)
         {
+            errorProvider.Clear();
             Object obj = comboBoxEdgeLeft.SelectedItem;
             if (obj is null)
             {
@@ -290,13 +307,14 @@ namespace CHarpLab5_2
             try
             {
                 graph.delEdge(from, to);
+                update();
             }
             catch(GraphException exp)
             {
                 errorProvider.SetError(groupEdge, exp.Message);
             }
 
-            update();
+            
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
@@ -310,6 +328,7 @@ namespace CHarpLab5_2
                 var stream = openFileDialog.OpenFile();
                 StreamReader reader = new StreamReader(stream);
                 string text = reader.ReadToEnd();
+                reader.Close();
                 //Console.WriteLine(text);
                 //Console.WriteLine("-----------------------------");
 
@@ -337,6 +356,7 @@ namespace CHarpLab5_2
                 fileOpen = true;
                 graph.saveToFile(filename);
                 update();
+
             }
         }
 
@@ -354,6 +374,7 @@ namespace CHarpLab5_2
             {
                 errorProvider.Clear();
                 graph.delay1 = Int32.Parse(textDelay1.Text);
+                textDelay1.Text = graph.delay1.ToString();
             }
             catch
             {
@@ -363,6 +384,31 @@ namespace CHarpLab5_2
 
         private void textDelay2_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                errorProvider.Clear();
+                graph.delay2 = Int32.Parse(textDelay2.Text);
+                Console.WriteLine("Graph delay {0} {1}", graph.delay1, graph.delay2);
+                textDelay2.Text = graph.delay2.ToString();
+            }
+            catch
+            {
+                errorProvider.SetError(textDelay2, "Не число");
+            }
+        }
+
+        private void updateDelay()
+        {
+            try
+            {
+                errorProvider.Clear();
+                graph.delay1 = Int32.Parse(textDelay1.Text);
+            }
+            catch
+            {
+                errorProvider.SetError(textDelay1, "Не число");
+            }
+
             try
             {
                 errorProvider.Clear();
@@ -401,6 +447,38 @@ namespace CHarpLab5_2
         private void pictureGraph_MouseUp(object sender, MouseEventArgs e)
         {
             focusController.onMouseUp(e.X, e.Y);
+        }
+
+        private void comboBoxDeleteVertexLeft_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void comboBoxEdgeRight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void comboBoxDeleteVertexRight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void comboBoxEdgeLeft_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана для визуализации алгоритма Куна. " +
+                "Данный алгоритм ищет максимальное паросочетание в двудольном графе. Его работа основана на поиске увеличивающих путей - путей, " +
+                "в которых чередуются ребра из паросочетания и ребра не из него, причем крайние ребра в паросоечетании не состоят. Для поиска таких путей" +
+                "используется обход в глубину, который последовательно запускается из вершин левой доли." +
+                "В данной программе Вы можете наблюдать, как это работает, нажав на кнопку Пуск. Текущая вершина будет покрашена в желтый, вершины, которые были посещены" +
+                "обходом, но из которых обход еще не вышел, будут отмечены синим, вершины, из которых обход вышел окрашиваются в черный." +
+                "Ребра, входящие в текущее паросочетание покрашены в красный цвет. Ребра, по которым обход прошел в одну сторону, покрашены в синий, остальные ребра покрашены" +
+                "в черный.");
         }
     }
 }

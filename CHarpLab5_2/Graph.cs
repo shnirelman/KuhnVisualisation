@@ -27,8 +27,17 @@ namespace CHarpLab5_2
         public Dictionary<string, Vertex> rightPart { get; private set; }
         private Dictionary<string, Dictionary<string, Edge>> g;
 
-        public int delay1 { get; set; }
-        public int delay2 { get; set; }
+
+        private int _delay1, _delay2;
+        public int delay1 { 
+            get { return _delay1; } 
+            set { _delay1 = Math.Min(10000, Math.Max(1, value)); } 
+        }
+        public int delay2
+        {
+            get { return _delay2; }
+            set { _delay2 = Math.Min(10000, Math.Max(1, value)); }
+        }
 
         private Thread matchingThread;
 
@@ -154,31 +163,21 @@ namespace CHarpLab5_2
         }
 
         public void addEdge(string lName, string rName) {
-            Console.WriteLine(lName + ' ' + rName);
-            Console.WriteLine(leftPart.ContainsKey(lName));
-            Console.WriteLine(rightPart.ContainsKey(rName).ToString() + ' ' + rName);
-            Console.WriteLine(rightPart.ContainsKey("a"));
-            Console.WriteLine(("a" == rName));
-            Console.WriteLine(rName.Length);
-            foreach(char c in rName)
-            {
-                Console.WriteLine("char {0} ind is {1}", c, ((short)c));
-            }
-
-
             if (!leftPart.ContainsKey(lName) || !rightPart.ContainsKey(rName))
-                throw new GraphException("Vertex not exists");
+                throw new GraphException("Вершины не существует");
             if (g[lName].ContainsKey(rName))
-                throw new GraphException("Edge exists");
+                throw new GraphException("Ребро уже существует");
+
+            Console.WriteLine("Edge added");
 
             g[lName].Add(rName, new Edge(this, lName, rName));
         }
 
         public void delEdge(string lName, string rName) {
             if (!leftPart.ContainsKey(lName) || !rightPart.ContainsKey(rName))
-                throw new GraphException("Vertex not exists");
+                throw new GraphException("Вершины не существует");
             if (!g[lName].ContainsKey(rName))
-                throw new GraphException("Edge not exists");
+                throw new GraphException("Ребро не найдено");
 
             g[lName].Remove(rName);
         }
@@ -201,13 +200,14 @@ namespace CHarpLab5_2
 
         public void pauseMatching()
         {
-            //matchingThread.Sleep(Timeout.Infinite);
-            matchingThread.Suspend();
+            if(matchingThread.ThreadState == ThreadState.Running || matchingThread.ThreadState == ThreadState.WaitSleepJoin)
+                matchingThread.Suspend();
         }
 
         public void resumeMatching()
         {
-            matchingThread.Resume();
+            if(matchingThread.ThreadState == ThreadState.Suspended)
+                matchingThread.Resume();
         }
 
         public void stopMatching()
@@ -256,14 +256,14 @@ namespace CHarpLab5_2
 
                     if(ed.Value.tp != 2)
                         ed.Value.tp = 1;
-                
+                    Thread.Sleep(delay1);
                     leftPart[v].used = 2;
 
                     if(Kuhn(mt2[u]))
                     {
-                        Thread.Sleep(delay1);
                         mt2[u] = v;
                         mt2ed[u].tp = 0;
+                        Thread.Sleep(delay1);
                         mt2ed[u] = ed.Value;
                         ed.Value.tp = 2;
                         Thread.Sleep(delay1);
@@ -275,9 +275,10 @@ namespace CHarpLab5_2
                     if(ed.Value.tp == 1)
                         ed.Value.tp = 0;
                     leftPart[v].used = 1;
+                    Thread.Sleep(delay1);
                 }
 
-                Thread.Sleep(delay1);
+                //Thread.Sleep(delay1);
                 leftPart[v].used = 3;
                 return false;
             };
@@ -297,7 +298,7 @@ namespace CHarpLab5_2
                     res++;
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(delay2);
             }
 
             foreach (var u in leftPart)

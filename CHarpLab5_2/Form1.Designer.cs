@@ -42,27 +42,29 @@ namespace CHarpLab5_2
             this.textAddVertex = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupDeleteVertex = new System.Windows.Forms.GroupBox();
+            this.comboBoxDeleteVertexRight = new System.Windows.Forms.ComboBox();
+            this.comboBoxDeleteVertexLeft = new System.Windows.Forms.ComboBox();
             this.btnDeleteVertexRight = new System.Windows.Forms.Button();
             this.btnDeleteVertexLeft = new System.Windows.Forms.Button();
-            this.comboBoxDeleteVertexLeft = new System.Windows.Forms.ComboBox();
-            this.comboBoxDeleteVertexRight = new System.Windows.Forms.ComboBox();
             this.groupEdge = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboBoxEdgeRight = new System.Windows.Forms.ComboBox();
             this.comboBoxEdgeLeft = new System.Windows.Forms.ComboBox();
             this.btnAddEdge = new System.Windows.Forms.Button();
             this.btnDelEdge = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnSaveAs = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textDelay1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.textDelay2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textDelay1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnInfo = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureGraph)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -79,7 +81,7 @@ namespace CHarpLab5_2
             // 
             // pictureGraph
             // 
-            this.pictureGraph.Location = new System.Drawing.Point(10, 62);
+            this.pictureGraph.Location = new System.Drawing.Point(14, 112);
             this.pictureGraph.Margin = new System.Windows.Forms.Padding(2);
             this.pictureGraph.Name = "pictureGraph";
             this.pictureGraph.Size = new System.Drawing.Size(418, 570);
@@ -92,7 +94,7 @@ namespace CHarpLab5_2
             // btnMatching
             // 
             this.btnMatching.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnMatching.Location = new System.Drawing.Point(10, 651);
+            this.btnMatching.Location = new System.Drawing.Point(14, 701);
             this.btnMatching.Margin = new System.Windows.Forms.Padding(2);
             this.btnMatching.Name = "btnMatching";
             this.btnMatching.Size = new System.Drawing.Size(155, 52);
@@ -104,7 +106,7 @@ namespace CHarpLab5_2
             // btnPause
             // 
             this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnPause.Location = new System.Drawing.Point(170, 651);
+            this.btnPause.Location = new System.Drawing.Point(174, 701);
             this.btnPause.Margin = new System.Windows.Forms.Padding(2);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(155, 52);
@@ -116,7 +118,7 @@ namespace CHarpLab5_2
             // btnResume
             // 
             this.btnResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnResume.Location = new System.Drawing.Point(329, 651);
+            this.btnResume.Location = new System.Drawing.Point(333, 701);
             this.btnResume.Margin = new System.Windows.Forms.Padding(2);
             this.btnResume.Name = "btnResume";
             this.btnResume.Size = new System.Drawing.Size(155, 52);
@@ -128,7 +130,7 @@ namespace CHarpLab5_2
             // btnStop
             // 
             this.btnStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnStop.Location = new System.Drawing.Point(489, 651);
+            this.btnStop.Location = new System.Drawing.Point(493, 701);
             this.btnStop.Margin = new System.Windows.Forms.Padding(2);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(155, 52);
@@ -142,7 +144,7 @@ namespace CHarpLab5_2
             this.groupBox1.Controls.Add(this.btnAddVertexRight);
             this.groupBox1.Controls.Add(this.btnAddVertexLeft);
             this.groupBox1.Controls.Add(this.textAddVertex);
-            this.groupBox1.Location = new System.Drawing.Point(444, 62);
+            this.groupBox1.Location = new System.Drawing.Point(448, 112);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 91);
             this.groupBox1.TabIndex = 5;
@@ -186,12 +188,30 @@ namespace CHarpLab5_2
             this.groupDeleteVertex.Controls.Add(this.comboBoxDeleteVertexLeft);
             this.groupDeleteVertex.Controls.Add(this.btnDeleteVertexRight);
             this.groupDeleteVertex.Controls.Add(this.btnDeleteVertexLeft);
-            this.groupDeleteVertex.Location = new System.Drawing.Point(444, 159);
+            this.groupDeleteVertex.Location = new System.Drawing.Point(448, 209);
             this.groupDeleteVertex.Name = "groupDeleteVertex";
             this.groupDeleteVertex.Size = new System.Drawing.Size(282, 98);
             this.groupDeleteVertex.TabIndex = 6;
             this.groupDeleteVertex.TabStop = false;
             this.groupDeleteVertex.Text = "Удалить вершину";
+            // 
+            // comboBoxDeleteVertexRight
+            // 
+            this.comboBoxDeleteVertexRight.FormattingEnabled = true;
+            this.comboBoxDeleteVertexRight.Location = new System.Drawing.Point(6, 60);
+            this.comboBoxDeleteVertexRight.Name = "comboBoxDeleteVertexRight";
+            this.comboBoxDeleteVertexRight.Size = new System.Drawing.Size(141, 21);
+            this.comboBoxDeleteVertexRight.TabIndex = 4;
+            this.comboBoxDeleteVertexRight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxDeleteVertexRight_KeyPress);
+            // 
+            // comboBoxDeleteVertexLeft
+            // 
+            this.comboBoxDeleteVertexLeft.FormattingEnabled = true;
+            this.comboBoxDeleteVertexLeft.Location = new System.Drawing.Point(7, 20);
+            this.comboBoxDeleteVertexLeft.Name = "comboBoxDeleteVertexLeft";
+            this.comboBoxDeleteVertexLeft.Size = new System.Drawing.Size(140, 21);
+            this.comboBoxDeleteVertexLeft.TabIndex = 3;
+            this.comboBoxDeleteVertexLeft.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxDeleteVertexLeft_KeyPress);
             // 
             // btnDeleteVertexRight
             // 
@@ -213,22 +233,6 @@ namespace CHarpLab5_2
             this.btnDeleteVertexLeft.UseVisualStyleBackColor = true;
             this.btnDeleteVertexLeft.Click += new System.EventHandler(this.btnDeleteVertexLeft_Click);
             // 
-            // comboBoxDeleteVertexLeft
-            // 
-            this.comboBoxDeleteVertexLeft.FormattingEnabled = true;
-            this.comboBoxDeleteVertexLeft.Location = new System.Drawing.Point(7, 20);
-            this.comboBoxDeleteVertexLeft.Name = "comboBoxDeleteVertexLeft";
-            this.comboBoxDeleteVertexLeft.Size = new System.Drawing.Size(140, 21);
-            this.comboBoxDeleteVertexLeft.TabIndex = 3;
-            // 
-            // comboBoxDeleteVertexRight
-            // 
-            this.comboBoxDeleteVertexRight.FormattingEnabled = true;
-            this.comboBoxDeleteVertexRight.Location = new System.Drawing.Point(6, 60);
-            this.comboBoxDeleteVertexRight.Name = "comboBoxDeleteVertexRight";
-            this.comboBoxDeleteVertexRight.Size = new System.Drawing.Size(141, 21);
-            this.comboBoxDeleteVertexRight.TabIndex = 4;
-            // 
             // groupEdge
             // 
             this.groupEdge.Controls.Add(this.label2);
@@ -237,12 +241,30 @@ namespace CHarpLab5_2
             this.groupEdge.Controls.Add(this.comboBoxEdgeLeft);
             this.groupEdge.Controls.Add(this.btnAddEdge);
             this.groupEdge.Controls.Add(this.btnDelEdge);
-            this.groupEdge.Location = new System.Drawing.Point(444, 283);
+            this.groupEdge.Location = new System.Drawing.Point(448, 333);
             this.groupEdge.Name = "groupEdge";
             this.groupEdge.Size = new System.Drawing.Size(210, 147);
             this.groupEdge.TabIndex = 7;
             this.groupEdge.TabStop = false;
             this.groupEdge.Text = "Ребро";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "В";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Из ";
             // 
             // comboBoxEdgeRight
             // 
@@ -251,6 +273,7 @@ namespace CHarpLab5_2
             this.comboBoxEdgeRight.Name = "comboBoxEdgeRight";
             this.comboBoxEdgeRight.Size = new System.Drawing.Size(141, 21);
             this.comboBoxEdgeRight.TabIndex = 4;
+            this.comboBoxEdgeRight.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxEdgeRight_KeyPress);
             // 
             // comboBoxEdgeLeft
             // 
@@ -260,6 +283,7 @@ namespace CHarpLab5_2
             this.comboBoxEdgeLeft.Size = new System.Drawing.Size(140, 21);
             this.comboBoxEdgeLeft.TabIndex = 3;
             this.comboBoxEdgeLeft.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBoxEdgeLeft.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxEdgeLeft_KeyPress);
             // 
             // btnAddEdge
             // 
@@ -281,24 +305,6 @@ namespace CHarpLab5_2
             this.btnDelEdge.UseVisualStyleBackColor = true;
             this.btnDelEdge.Click += new System.EventHandler(this.btnDelEdge_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Из ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "В";
-            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
@@ -306,7 +312,7 @@ namespace CHarpLab5_2
             // btnOpen
             // 
             this.btnOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnOpen.Location = new System.Drawing.Point(12, 12);
+            this.btnOpen.Location = new System.Drawing.Point(16, 62);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(102, 44);
             this.btnOpen.TabIndex = 8;
@@ -317,7 +323,7 @@ namespace CHarpLab5_2
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSave.Location = new System.Drawing.Point(120, 12);
+            this.btnSave.Location = new System.Drawing.Point(124, 62);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(125, 44);
             this.btnSave.TabIndex = 9;
@@ -328,7 +334,7 @@ namespace CHarpLab5_2
             // btnSaveAs
             // 
             this.btnSaveAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSaveAs.Location = new System.Drawing.Point(251, 12);
+            this.btnSaveAs.Location = new System.Drawing.Point(255, 62);
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(177, 44);
             this.btnSaveAs.TabIndex = 10;
@@ -343,30 +349,21 @@ namespace CHarpLab5_2
             this.groupBox2.Controls.Add(this.textDelay1);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(444, 508);
+            this.groupBox2.Location = new System.Drawing.Point(448, 558);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(259, 124);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Задержка";
             // 
-            // label3
+            // textDelay2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(8, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(231, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Внутри запуска обхода в глубину:";
-            // 
-            // textDelay1
-            // 
-            this.textDelay1.Location = new System.Drawing.Point(9, 36);
-            this.textDelay1.Name = "textDelay1";
-            this.textDelay1.Size = new System.Drawing.Size(138, 23);
-            this.textDelay1.TabIndex = 1;
-            this.textDelay1.TextChanged += new System.EventHandler(this.textDelay1_TextChanged);
+            this.textDelay2.Location = new System.Drawing.Point(9, 82);
+            this.textDelay2.Name = "textDelay2";
+            this.textDelay2.Size = new System.Drawing.Size(138, 23);
+            this.textDelay2.TabIndex = 3;
+            this.textDelay2.Text = "1000";
+            this.textDelay2.TextChanged += new System.EventHandler(this.textDelay2_TextChanged);
             // 
             // label4
             // 
@@ -378,19 +375,53 @@ namespace CHarpLab5_2
             this.label4.TabIndex = 2;
             this.label4.Text = "Между запусками обхода в глубину:";
             // 
-            // textDelay2
+            // textDelay1
             // 
-            this.textDelay2.Location = new System.Drawing.Point(9, 82);
-            this.textDelay2.Name = "textDelay2";
-            this.textDelay2.Size = new System.Drawing.Size(138, 23);
-            this.textDelay2.TabIndex = 3;
-            this.textDelay2.TextChanged += new System.EventHandler(this.textDelay2_TextChanged);
+            this.textDelay1.Location = new System.Drawing.Point(9, 36);
+            this.textDelay1.Name = "textDelay1";
+            this.textDelay1.Size = new System.Drawing.Size(138, 23);
+            this.textDelay1.TabIndex = 1;
+            this.textDelay1.Text = "800";
+            this.textDelay1.TextChanged += new System.EventHandler(this.textDelay1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(8, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(231, 17);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Внутри запуска обхода в глубину:";
+            // 
+            // btnInfo
+            // 
+            this.btnInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnInfo.Location = new System.Drawing.Point(687, 12);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(102, 44);
+            this.btnInfo.TabIndex = 12;
+            this.btnInfo.Text = "Справка";
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(11, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(188, 29);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Алгоритм Куна";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 734);
+            this.ClientSize = new System.Drawing.Size(801, 801);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSave);
@@ -418,6 +449,7 @@ namespace CHarpLab5_2
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -455,6 +487,8 @@ namespace CHarpLab5_2
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textDelay1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Label label5;
     }
 }
 
